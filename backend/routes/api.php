@@ -23,9 +23,11 @@ Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{id}', [ProductController::class, 'show']);
 Route::get('/products/category/{category}', [ProductController::class, 'byCategory']);
 
-// Protected routes (will implement JWT later)
-Route::middleware('auth:sanctum')->group(function () {
+// Protected routes with JWT
+Route::middleware('auth:api')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/refresh', [AuthController::class, 'refresh']);
+    Route::get('/me', [AuthController::class, 'me']);
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
