@@ -14,13 +14,10 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug')->unique();
-            $table->enum('category', ['Hosting', 'Domain', 'VPS', 'SSL', 'Cloud']);
+            $table->string('category'); // Hosting, Domain, VPS, SSL, Cloud
             $table->decimal('price', 10, 2);
-            $table->enum('billing_cycle', ['Monthly', 'Quarterly', 'Yearly']);
-            $table->json('technical_specs')->nullable();
-            $table->text('description')->nullable();
-            $table->boolean('is_active')->default(true);
+            $table->string('billing_cycle'); // Monthly, Quarterly, Yearly
+            $table->json('features_specs')->nullable();
             $table->timestamps();
         });
     }

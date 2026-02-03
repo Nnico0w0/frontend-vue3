@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_id')->constrained()->onDelete('cascade');
-            $table->foreignId('payment_method_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('order_id');
+            $table->unsignedBigInteger('payment_method_id');
             $table->string('external_reference_id')->nullable();
             $table->decimal('amount', 10, 2);
             $table->enum('status', ['Pending', 'Success', 'Failed', 'Refunded', 'Cancelled']);

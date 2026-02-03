@@ -34,20 +34,28 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/html
 
 # Copiar archivos de composer primero para aprovechar el cache de Docker
-COPY composer.json composer.lock ./
+COPY composer.json ./
 
 # Configurar timeout de Composer y preferir dist sobre source
 ENV COMPOSER_PROCESS_TIMEOUT=600 \
     COMPOSER_MEMORY_LIMIT=-1
 
-# Instalar dependencias de PHP (esto se cachea si composer.json/lock no cambian)
-RUN composer install --no-dev --optimize-autoloader --no-scripts --no-autoloader --prefer-dist
+# Instalar dependencias de PHP (esto se cachea si composer.json no cambia)
+RUN composer install --no-dev --optimize-autoloader --prefer-dist --no-scripts
 
 # Copiar el resto de archivos del proyecto
 COPY . .
 
-# Completar la instalación de composer con scripts y autoloader
-RUN composer dump-autoload --optimize --no-dev
+# Crear .env si no existe
+RUN cp .env.example .env || true
+
+# Generar clave de aplicación si no existe
+RUN php artisan key:generate --no-interaction --force || true
+
+# Optimizar configuración para producción
+RUN php artisan config:cache || true && \
+    php artisan route:cache || true && \
+    php artisan view:cache || true
 
 # Configurar permisos
 RUN chown -R www-data:www-data /var/www/html \

@@ -19,7 +19,7 @@ class ProductSeeder extends Seeder
             'category' => 'Hosting',
             'price' => 4.99,
             'billing_cycle' => 'Monthly',
-            'technical_specs' => [
+            'features_specs' => [
                 'storage' => '10 GB SSD',
                 'bandwidth' => 'Ilimitado',
                 'websites' => 1,
@@ -27,9 +27,7 @@ class ProductSeeder extends Seeder
                 'databases' => 1,
                 'ssl' => true,
                 'backup' => 'Semanal'
-            ],
-            'description' => 'Perfecto para sitios web pequeños y proyectos personales',
-            'is_active' => true
+            ]
         ]);
 
         Product::create([
@@ -37,7 +35,7 @@ class ProductSeeder extends Seeder
             'category' => 'Hosting',
             'price' => 9.99,
             'billing_cycle' => 'Monthly',
-            'technical_specs' => [
+            'features_specs' => [
                 'storage' => '50 GB SSD',
                 'bandwidth' => 'Ilimitado',
                 'websites' => 5,
@@ -46,9 +44,7 @@ class ProductSeeder extends Seeder
                 'ssl' => true,
                 'backup' => 'Diario',
                 'cdn' => true
-            ],
-            'description' => 'Ideal para empresas pequeñas y medianas con múltiples sitios',
-            'is_active' => true
+            ]
         ]);
 
         Product::create([
@@ -56,7 +52,7 @@ class ProductSeeder extends Seeder
             'category' => 'Hosting',
             'price' => 19.99,
             'billing_cycle' => 'Monthly',
-            'technical_specs' => [
+            'features_specs' => [
                 'storage' => '200 GB SSD',
                 'bandwidth' => 'Ilimitado',
                 'websites' => 'Ilimitado',
@@ -66,9 +62,7 @@ class ProductSeeder extends Seeder
                 'backup' => 'Diario',
                 'cdn' => true,
                 'priority_support' => true
-            ],
-            'description' => 'Para sitios de alto tráfico y negocios en crecimiento',
-            'is_active' => true
+            ]
         ]);
 
         // VPS Products
@@ -77,16 +71,14 @@ class ProductSeeder extends Seeder
             'category' => 'VPS',
             'price' => 29.99,
             'billing_cycle' => 'Monthly',
-            'technical_specs' => [
+            'features_specs' => [
                 'cpu' => '2 vCPU',
                 'ram' => '4 GB',
                 'storage' => '80 GB SSD',
                 'bandwidth' => '3 TB',
                 'ip_addresses' => 1,
                 'root_access' => true
-            ],
-            'description' => 'Servidor privado virtual para desarrolladores',
-            'is_active' => true
+            ]
         ]);
 
         // Domain Products
@@ -95,14 +87,12 @@ class ProductSeeder extends Seeder
             'category' => 'Domain',
             'price' => 14.99,
             'billing_cycle' => 'Yearly',
-            'technical_specs' => [
+            'features_specs' => [
                 'extension' => '.com',
                 'dns_management' => true,
                 'privacy_protection' => true,
                 'email_forwarding' => true
-            ],
-            'description' => 'Dominio .com con gestión DNS incluida',
-            'is_active' => true
+            ]
         ]);
 
         // SSL Products
@@ -111,14 +101,12 @@ class ProductSeeder extends Seeder
             'category' => 'SSL',
             'price' => 9.99,
             'billing_cycle' => 'Yearly',
-            'technical_specs' => [
+            'features_specs' => [
                 'type' => 'Domain Validated',
                 'encryption' => '256-bit',
                 'warranty' => '$10,000',
                 'validation' => 'Automática'
-            ],
-            'description' => 'Certificado SSL para proteger tu sitio web',
-            'is_active' => true
+            ]
         ]);
     }
 }

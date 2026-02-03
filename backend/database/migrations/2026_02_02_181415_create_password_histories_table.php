@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('password_histories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
             $table->string('password_hash');
-            $table->foreignId('changed_by_id')->nullable()->constrained('users')->onDelete('set null');
+            $table->unsignedBigInteger('changed_by_id')->nullable();
             $table->string('ip_address')->nullable();
             $table->text('user_agent')->nullable();
             $table->timestamps();

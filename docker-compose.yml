@@ -56,7 +56,7 @@ services:
       POSTGRES_USER: laravel_user
       POSTGRES_PASSWORD: laravel_password
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - ./postgres_data:/var/lib/postgresql/data
     networks:
       - app-network
 

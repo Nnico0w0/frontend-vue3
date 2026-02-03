@@ -13,39 +13,18 @@ class Product extends Model
 
     protected $fillable = [
         'name',
-        'slug',
         'category',
         'price',
         'billing_cycle',
-        'technical_specs',
-        'description',
-        'is_active'
+        'features_specs'
     ];
 
     protected $casts = [
-        'technical_specs' => 'array',
-        'price' => 'decimal:2',
-        'is_active' => 'boolean'
+        'features_specs' => 'array',
+        'price' => 'decimal:2'
     ];
 
-    // Automatically generate slug
-    protected static function boot()
-    {
-        parent::boot();
-        
-        static::creating(function ($product) {
-            if (!$product->slug) {
-                $product->slug = Str::slug($product->name);
-            }
-        });
-    }
-
     // Scopes
-    public function scopeActive($query)
-    {
-        return $query->where('is_active', true);
-    }
-
     public function scopeByCategory($query, $category)
     {
         return $query->where('category', $category);

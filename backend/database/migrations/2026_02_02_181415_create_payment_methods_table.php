@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('payment_methods', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
             $table->string('provider'); // Stripe, PayPal
             $table->string('payment_type'); // Credit Card, Wallet
             $table->string('gateway_token');
