@@ -36,8 +36,12 @@ WORKDIR /var/www/html
 # Copiar archivos de composer primero para aprovechar el cache de Docker
 COPY composer.json composer.lock ./
 
+# Configurar timeout de Composer y preferir dist sobre source
+ENV COMPOSER_PROCESS_TIMEOUT=600 \
+    COMPOSER_MEMORY_LIMIT=-1
+
 # Instalar dependencias de PHP (esto se cachea si composer.json/lock no cambian)
-RUN composer install --no-dev --optimize-autoloader --no-scripts --no-autoloader
+RUN composer install --no-dev --optimize-autoloader --no-scripts --no-autoloader --prefer-dist
 
 # Copiar el resto de archivos del proyecto
 COPY . .

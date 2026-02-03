@@ -230,6 +230,44 @@ curl -X GET http://localhost:8000/api/me \
 
 In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
+## 🔧 Troubleshooting
+
+### Docker Build Network Issues
+
+If you encounter network connectivity errors during Docker build (e.g., "Could not resolve host: github.com"), see [DOCKER_BUILD_FIX.md](./DOCKER_BUILD_FIX.md) for detailed solutions.
+
+**Quick fixes**:
+1. Build with host network: `docker-compose build --build-arg BUILDKIT_INLINE_CACHE=1`
+2. Check Docker has internet access: `docker run --rm alpine ping -c 4 google.com`
+3. Try building with BuildKit: `DOCKER_BUILDKIT=1 docker-compose build`
+4. If all else fails, install dependencies locally first:
+   ```bash
+   cd backend && composer install --no-dev
+   ```
+
+### Common Issues
+
+**Port Already in Use**:
+```bash
+# Check what's using the port
+sudo lsof -i :8000
+# Kill the process or change the port in docker-compose.yml
+```
+
+**Database Connection Errors**:
+```bash
+# Ensure database is running
+docker-compose ps postgres
+# Check database logs
+docker-compose logs postgres
+```
+
+**Permission Errors**:
+```bash
+# Fix storage permissions
+docker-compose exec backend chmod -R 777 storage bootstrap/cache
+```
+
 ## Security Vulnerabilities
 
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
