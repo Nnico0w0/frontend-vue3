@@ -146,3 +146,25 @@
 2026-02-03 16:53:38,662 INFO spawned: 'php-fpm' with pid 8
 2026-02-03 16:53:39,700 INFO success: nginx entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
 2026-02-03 16:53:39,700 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2026-02-03 18:48:31,795 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2026-02-03 18:48:31,797 INFO supervisord started with pid 1
+2026-02-03 18:48:32,800 INFO spawned: 'nginx' with pid 7
+2026-02-03 18:48:32,802 INFO spawned: 'php-fpm' with pid 8
+2026-02-03 18:48:32,808 WARN exited: nginx (exit status 1; not expected)
+2026-02-03 18:48:33,850 INFO spawned: 'nginx' with pid 11
+2026-02-03 18:48:33,850 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2026-02-03 18:48:33,856 WARN exited: nginx (exit status 1; not expected)
+2026-02-03 18:48:35,858 INFO spawned: 'nginx' with pid 12
+2026-02-03 18:48:35,864 WARN exited: nginx (exit status 1; not expected)
+2026-02-03 18:48:38,868 INFO spawned: 'nginx' with pid 13
+2026-02-03 18:48:38,874 WARN exited: nginx (exit status 1; not expected)
+2026-02-03 18:48:39,875 INFO gave up: nginx entered FATAL state, too many start retries too quickly
+2026-02-03 18:49:53,954 WARN received SIGQUIT indicating exit request
+2026-02-03 18:49:53,954 INFO waiting for php-fpm to die
+2026-02-03 18:49:54,959 INFO stopped: php-fpm (exit status 0)
+2026-02-03 18:50:26,607 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2026-02-03 18:50:26,609 INFO supervisord started with pid 1
+2026-02-03 18:50:27,613 INFO spawned: 'nginx' with pid 7
+2026-02-03 18:50:27,615 INFO spawned: 'php-fpm' with pid 8
+2026-02-03 18:50:28,661 INFO success: nginx entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2026-02-03 18:50:28,661 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
