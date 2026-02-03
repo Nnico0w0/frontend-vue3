@@ -1,0 +1,50 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Environment files
+.env
+.env.backup
+.env.testing
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+*~
+
+# Node modules (if any)
+node_modules
+npm-debug.log
+
+# Testing
+# Note: tests are excluded from build context but will be available at runtime via volume mount
+# This is fine since volumes in docker-compose.yml mount ./backend:/var/www/html
+tests
+phpunit.xml
+.phpunit.result.cache
+
+# Documentation
+*.md
+README.md
+CHANGELOG.md
+
+# CI/CD
+.github
+.gitlab-ci.yml
+
+# Storage (will be mounted as volume)
+storage/logs/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+
+# Bootstrap cache
+bootstrap/cache/*

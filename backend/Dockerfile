@@ -33,11 +33,21 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Establecer directorio de trabajo
 WORKDIR /var/www/html
 
-# Copiar archivos del proyecto
+# Copiar archivos de composer primero para aprovechar el cache de Docker
+COPY composer.json composer.lock ./
+
+# Configurar timeout de Composer y preferir dist sobre source
+ENV COMPOSER_PROCESS_TIMEOUT=600 \
+    COMPOSER_MEMORY_LIMIT=-1
+
+# Instalar dependencias de PHP (esto se cachea si composer.json/lock no cambian)
+RUN composer install --no-dev --optimize-autoloader --no-scripts --no-autoloader --prefer-dist
+
+# Copiar el resto de archivos del proyecto
 COPY . .
 
-# Instalar dependencias de PHP
-RUN composer install --no-dev --optimize-autoloader
+# Completar la instalación de composer con scripts y autoloader
+RUN composer dump-autoload --optimize --no-dev
 
 # Configurar permisos
 RUN chown -R www-data:www-data /var/www/html \
