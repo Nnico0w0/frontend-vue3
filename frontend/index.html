@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HostPro - Tu Partner en Hosting</title>
+    <meta name="description" content="Hosting web confiable, rápido y escalable. SSL gratis, soporte 24/7 y servidores optimizados.">
+    <style>
+        /* Colores custom usando la paleta proporcionada */
+        :root {
+            --color-teal-50: #f0fdfa;
+            --color-teal-100: #ccfbf1;
+            --color-teal-600: #00BBC9;
+            --color-teal-700: #00747C;
+            --color-teal-800: #00747C;
+            --color-gray-50: #f9fafb;
+            --color-gray-600: #878787;
+            --color-gray-700: #202022;
+            --color-gray-800: #202022;
+        }
+        
+        .bg-teal-600 { background-color: var(--color-teal-600) !important; }
+        .bg-teal-700 { background-color: var(--color-teal-700) !important; }
+        .bg-teal-800 { background-color: var(--color-teal-800) !important; }
+        .text-teal-600 { color: var(--color-teal-600) !important; }
+        .text-teal-700 { color: var(--color-teal-700) !important; }
+        .bg-teal-100 { background-color: var(--color-teal-100) !important; }
+        .hover\:bg-teal-700:hover { background-color: var(--color-teal-700) !important; }
+        .hover\:text-teal-600:hover { color: var(--color-teal-600) !important; }
+        
+        /* Loading animation */
+        .loading-spinner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div id="app">
+        <div class="loading-spinner">
+            <div class="text-center">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-600 mx-auto mb-4"></div>
+                <p class="text-gray-600">Cargando HostPro...</p>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="/resources/js/app.js"></script>
+</body>
+</html>
