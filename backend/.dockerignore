@@ -25,6 +25,8 @@ node_modules
 npm-debug.log
 
 # Testing
+# Note: tests are excluded from build context but will be available at runtime via volume mount
+# This is fine since volumes in docker-compose.yml mount ./backend:/var/www/html
 tests
 phpunit.xml
 .phpunit.result.cache

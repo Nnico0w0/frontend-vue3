@@ -265,7 +265,8 @@ docker-compose logs postgres
 **Permission Errors**:
 ```bash
 # Fix storage permissions
-docker-compose exec backend chmod -R 777 storage bootstrap/cache
+docker-compose exec backend chmod -R 775 storage bootstrap/cache
+docker-compose exec backend chown -R www-data:www-data storage bootstrap/cache
 ```
 
 ## Security Vulnerabilities
