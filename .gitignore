@@ -35,5 +35,9 @@ tmp/
 temp/
 *.tmp
 
+postgres_data
+.env
+backend/vendor
+frontend/node_modules
 # Lock files (optional - keep package-lock.json but ignore if needed)
 # package-lock.json

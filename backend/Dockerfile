@@ -16,6 +16,8 @@ RUN apt-get update && apt-get install -y \
     curl \
     libzip-dev \
     libpq-dev \
+    sqlite3 \
+    libsqlite3-dev \
     nginx \
     supervisor
 
@@ -23,7 +25,7 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Instalar extensiones de PHP
-RUN docker-php-ext-install pdo pdo_pgsql zip exif pcntl
+RUN docker-php-ext-install pdo pdo_pgsql pdo_sqlite zip exif pcntl
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 RUN docker-php-ext-install gd
 

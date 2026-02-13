@@ -15,6 +15,7 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
     use HasFactory, Notifiable;
 
     protected $fillable = [
+        'name',
         'first_name',
         'last_name', 
         'email',
@@ -23,7 +24,8 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         'city',
         'country',
         'password',
-        'is_email_verified'
+        'is_email_verified',
+        'is_admin'
     ];
 
     protected $hidden = [
@@ -34,6 +36,7 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
     protected $casts = [
         'email_verified_at' => 'datetime',
         'is_email_verified' => 'boolean',
+        'is_admin' => 'boolean',
         'password' => 'hashed',
     ];
 

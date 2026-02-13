@@ -13,26 +13,49 @@ class Product extends Model
 
     protected $fillable = [
         'name',
+        'description',
         'category',
         'price',
-        'billing_cycle',
-        'features_specs'
+        'image_url',
+        'stock',
+        'discount_percentage',
+        'sales_count',
+        'is_active',
+        'author',
+        'is_featured'
     ];
 
     protected $casts = [
-        'features_specs' => 'array',
-        'price' => 'decimal:2'
+        'price' => 'decimal:2',
+        'discount_percentage' => 'decimal:2',
+        'is_active' => 'boolean',
+        'is_featured' => 'boolean'
     ];
 
     // Scopes
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
+
     public function scopeByCategory($query, $category)
     {
         return $query->where('category', $category);
     }
 
-    public function scopeHosting($query)
+    public function scopeFeatured($query)
     {
-        return $query->where('category', 'Hosting');
+        return $query->where('is_featured', true);
+    }
+
+    public function scopeTopSelling($query, $limit = 3)
+    {
+        return $query->orderBy('sales_count', 'desc')->limit($limit);
+    }
+
+    public function scopeInStock($query)
+    {
+        return $query->where('stock', '>', 0);
     }
 
     // Relationships

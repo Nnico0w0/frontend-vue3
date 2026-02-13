@@ -98,8 +98,8 @@
             <router-link class="dropdown-item" v-else :to="{ name: 'Wishlist' }"
               >Wishlist</router-link
             >
-            <router-link class="dropdown-item" :to="{ name: 'Admin' }"
-              >Admin</router-link
+            <a class="dropdown-item" href="#" @click="$emit('show-admin')"
+              >Admin Panel</a
             >
             <router-link
               class="dropdown-item"

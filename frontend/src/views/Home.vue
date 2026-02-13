@@ -83,19 +83,31 @@
       createFeaturedProducts() {
         // Simular productos destacados basados en los productos existentes
         if (this.products && this.products.length > 0) {
-          this.featuredProducts = this.products.slice(0, 10).map((product, index) => {
-            const hasDiscount = index % 3 === 0; // Cada tercer producto tiene descuento
-            const isReservation = index % 5 === 0; // Cada quinto producto es reserva
-            const discount = hasDiscount ? Math.floor(Math.random() * 30) + 10 : null;
+          // Tomar los 3 productos más vendidos
+          const topSelling = [...this.products]
+            .sort((a, b) => (b.salesCount || 0) - (a.salesCount || 0))
+            .slice(0, 3);
+          
+          // Agregar algunos productos adicionales con descuentos
+          const otherProducts = this.products.slice(0, 7).map((product, index) => {
+            const hasDiscount = index % 4 === 0; // Cada cuarto producto tiene descuento
+            const isReservation = product.isReservation || index % 6 === 0; // Cada sexto producto es reserva
+            const discount = hasDiscount && !product.discount ? Math.floor(Math.random() * 30) + 10 : product.discount;
             
             return {
               ...product,
-              discount: discount,
-              originalPrice: hasDiscount ? (product.price * (1 + discount / 100)).toFixed(2) : null,
+              discount: discount || null,
+              originalPrice: discount && !product.originalPrice ? 
+                (parseFloat(product.price) * (1 + discount / 100)).toFixed(2) : product.originalPrice,
               isReservation: isReservation,
-              author: this.generateRandomAuthor() // Simular autor para libros
+              author: product.author || this.generateRandomAuthor()
             };
           });
+          
+          // Combinar productos más vendidos con otros productos
+          this.featuredProducts = [...topSelling, ...otherProducts.filter(p => 
+            !topSelling.find(ts => ts.id === p.id)
+          )].slice(0, 10);
         } else {
           // Datos de ejemplo si no hay productos
           this.featuredProducts = [
@@ -106,7 +118,7 @@
               price: "32,15",
               originalPrice: null,
               discount: null,
-              imageURL: "https://via.placeholder.com/250x300/6c757d/fff?text=Era",
+              imageURL: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=400&fit=crop",
               isReservation: false
             },
             {
@@ -116,7 +128,7 @@
               price: "25,99",
               originalPrice: "35,90",
               discount: 15,
-              imageURL: "https://via.placeholder.com/250x300/dc3545/fff?text=Resistir%C3%A9",
+              imageURL: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=300&h=400&fit=crop",
               isReservation: false
             },
             {
@@ -126,7 +138,7 @@
               price: "32,15",
               originalPrice: null,
               discount: null,
-              imageURL: "https://via.placeholder.com/250x300/17a2b8/fff?text=Ser+Feliz",
+              imageURL: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=400&fit=crop",
               isReservation: false
             },
             {
@@ -136,7 +148,7 @@
               price: "32,15",
               originalPrice: null,
               discount: null,
-              imageURL: "https://via.placeholder.com/250x300/ffc107/000?text=El+Espartano",
+              imageURL: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=400&fit=crop",
               isReservation: false
             },
             {
@@ -146,7 +158,7 @@
               price: "32,15",
               originalPrice: null,
               discount: null,
-              imageURL: "https://via.placeholder.com/250x300/28a745/fff?text=Che+Guevara",
+              imageURL: "https://images.unsplash.com/photo-1503236823255-94609f598e71?w=300&h=400&fit=crop",
               isReservation: true
             }
           ];
