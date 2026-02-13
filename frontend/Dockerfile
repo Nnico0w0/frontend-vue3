@@ -4,17 +4,20 @@ FROM node:20-alpine
 # Establecer directorio de trabajo
 WORKDIR /app
 
-# Copiar package.json y package-lock.json
+# Instalar dependencias del sistema necesarias
+RUN apk add --no-cache git
+
+# Copiar archivos de package.json
 COPY package*.json ./
 
 # Instalar dependencias
 RUN npm install
 
-# Copiar el resto de archivos
+# Copiar el resto de los archivos
 COPY . .
 
 # Exponer puerto
-EXPOSE 3000
+EXPOSE 8080
 
-# Comando de desarrollo
-CMD ["npm", "run", "dev"]
+# Comando para desarrollo
+CMD ["npm", "run", "serve", "--", "--host", "0.0.0.0", "--port", "8080"]
